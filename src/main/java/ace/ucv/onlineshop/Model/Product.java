@@ -1,24 +1,31 @@
 package ace.ucv.onlineshop.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.persistence.*;
+
+@Getter
+@Setter
 @Entity
-public class Product{
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
-    private String Name;
+    @Column(name = "name", nullable = false, unique = true)
+    private String name;
 
-    private String Specifications;
+    @Column(name = "specifications", nullable = false)
+    private String specifications;
 
-    private Float Price;
+    @Column(name = "price", nullable = false)
+    private Float price;
 
-    private Integer Stock;
+    @Column(name = "stock", nullable = false)
+    private Integer stock;
 
-    private String Provider;
+    @Column(name = "provider", nullable = false)
+    private String provider;
 }
