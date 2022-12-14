@@ -1,6 +1,9 @@
 package ace.ucv.onlineshop.Services;
 
+import ace.ucv.onlineshop.Dtos.DiscountDto;
+import ace.ucv.onlineshop.Exceptions.ProductReducedException;
 import ace.ucv.onlineshop.Exceptions.ResourceNotFoundException;
+import ace.ucv.onlineshop.Model.Discount;
 import ace.ucv.onlineshop.Model.Product;
 import ace.ucv.onlineshop.Repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +50,26 @@ public class ProductService {
         productRepository.findById(productId)
                 .orElseThrow(() -> new ResourceNotFoundException("Product", "Id", productId));
         productRepository.deleteById(productId);
+    }
+
+    public Product getProductByName(String name) {
+        return productRepository.findProductByName(name);
+    }
+
+    public Discount AddDiscount(Long productId, DiscountDto discountDto){
+
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new ResourceNotFoundException("Product", "Id", productId));
+
+        if (product.getIsReduced()){
+            throw new ProductReducedException(product.getName());
+        }
+
+        Discount newDiscount = new Discount();
+        newDiscount.setValue(discountDto.getValue());
+        newDiscount.setPoints(discountDto.getPoints());
+        newDiscount.setProduct(product);
+
+        return newDiscount;
     }
 }
