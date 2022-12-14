@@ -6,6 +6,8 @@ import ace.ucv.onlineshop.Repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductService {
 
@@ -16,20 +18,29 @@ public class ProductService {
         return productRepository.save(newProduct);
     }
 
-    public Product updateProduct(Long productId, Product newProduct){
+    public List<Product> getProducts(){
+        return productRepository.findAll();
+    }
 
-        Product product = productRepository.findById(productId)
+    public Product getProductById(Long productId){
+        return productRepository.findById(productId)
                 .orElseThrow(() -> new ResourceNotFoundException("Product", "Id", productId));
+    }
 
-        product.setName(newProduct.getName());
-        product.setSpecifications(newProduct.getSpecifications());
-        product.setPrice(newProduct.getPrice());
-        product.setStock(newProduct.getStock());
-        product.setProvider(newProduct.getProvider());
+    public Product updateProduct(Product product){
 
-        productRepository.save(product);
+        Product newProduct = productRepository.findById(product.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Product", "Id", product.getId()));
 
-        return product;
+        newProduct.setName(product.getName());
+        newProduct.setSpecifications(product.getSpecifications());
+        newProduct.setPrice(product.getPrice());
+        newProduct.setStock(product.getStock());
+        newProduct.setProvider(product.getProvider());
+
+        productRepository.save(newProduct);
+
+        return newProduct;
     }
 
     public void deleteProduct(Long productId){

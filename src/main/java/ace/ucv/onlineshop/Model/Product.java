@@ -28,4 +28,10 @@ public class Product {
 
     @Column(name = "provider", nullable = false)
     private String provider;
+
+    @Column(name = "category", nullable = false)
+    private String category;
+
+    @Column(name = "is_reduced", nullable = false)
+    private Boolean isReduced = false;
 }

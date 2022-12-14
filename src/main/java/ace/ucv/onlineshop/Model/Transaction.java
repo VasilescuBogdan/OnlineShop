@@ -1,5 +1,6 @@
 package ace.ucv.onlineshop.Model;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,14 +18,11 @@ public class Transaction {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "cart_id", nullable = false)
-    private Cart cart;
-
     @Column(name = "date", nullable = false)
     private LocalDateTime date;
 
-    @Column(name = "total_price", nullable = false)
-    private Float totalPrice;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "cart_item_id", nullable = false)
+    private CartItem cartItem;
 
 }
