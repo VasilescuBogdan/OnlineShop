@@ -12,29 +12,8 @@
         <script src="../static/js/products.js"></script>
 
 
-        <!-- Navbar -->
-        <div>
-            <nav class="navbar navbar-expand-lg bg-dark bg-gradient">
-                <div class="container">
-                    <a class="navbar-brand text-white mb-0 h1">Navbar</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li class="nav-item">
-                                    <a class="nav-link active text-white" aria-current="page" href="#">Products</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active text-white" aria-current="page" href="#">Tranzactions</a>
-                                </li>
-                                <li class="nav-item">
-                                    <button class="btn text-white" onclick="">Logout</button>
-                                </li>
-                            </ul>
-                        </div>
-                </div>
-            </nav>
+        <!-- Admin navbar -->
+        <div th:replace="navbar :: navbar">
         </div>
 
         <!-- Products table-->

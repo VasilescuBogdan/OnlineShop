@@ -38,12 +38,12 @@ public class AppConfig {
                 .csrf().disable()
                     .authorizeRequests()
                         .antMatchers("/", "/register", "/api/**", "/details/{name}").permitAll()
-                        .antMatchers("/products", "/transactions").hasRole("ADMIN")
-                        .antMatchers("/profile").hasRole("CLIENT")
+                        .antMatchers("/products", "/transactions").hasAuthority("ADMIN")
+                        .antMatchers("/profile").hasAuthority("CLIENT")
                         .and()
                         .formLogin().permitAll()
                         .and()
-                        .logout();
+                        .logout().logoutSuccessUrl("/");
 
             http.authenticationProvider(authenticationProvider());
 

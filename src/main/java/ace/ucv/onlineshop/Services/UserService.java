@@ -27,7 +27,7 @@ public class UserService {
 
         newUser.setEmail(client.getEmail());
         newUser.setPassword(passwordEncoder.encode(client.getPassword()));
-        newUser.setRole("USER");
+        newUser.setRole("CLIENT");
 
         Profile newProfile = new Profile();
         newProfile.setFirstName(client.getFirstName());
