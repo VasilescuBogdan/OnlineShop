@@ -6,6 +6,7 @@ import ace.ucv.onlineshop.Model.User;
 import ace.ucv.onlineshop.Repositories.ProfileRepository;
 import ace.ucv.onlineshop.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -20,10 +21,13 @@ public class UserService {
     public ProfileRepository profileRepository;
 
     public void createClient(ClientDto client){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
         User newUser = new User();
 
         newUser.setEmail(client.getEmail());
-        newUser.setPassword(client.getPassword());
+        newUser.setPassword(passwordEncoder.encode(client.getPassword()));
+        newUser.setRole("USER");
 
         Profile newProfile = new Profile();
         newProfile.setFirstName(client.getFirstName());
