@@ -1,22 +1,22 @@
 package ace.ucv.onlineshop.Controllers;
 
 import ace.ucv.onlineshop.Dtos.ClientDto;
-import ace.ucv.onlineshop.Model.Client;
-import ace.ucv.onlineshop.Services.ClientService;
+import ace.ucv.onlineshop.Model.User;
+import ace.ucv.onlineshop.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("/api/clients")
+@RequestMapping("/api/users")
 @RestController
-public class ClientController {
+public class UserController {
     @Autowired
-    ClientService clientService;
+    UserService userService;
 
     @PostMapping
-    public Client createClient(@RequestBody ClientDto newClient){
-        return clientService.createClient(newClient);
+    public User createClient(@RequestBody ClientDto newClient){
+        return userService.createClient(newClient);
     }
 }

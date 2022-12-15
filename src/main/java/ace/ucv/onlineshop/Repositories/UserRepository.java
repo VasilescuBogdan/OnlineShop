@@ -1,10 +1,10 @@
 package ace.ucv.onlineshop.Repositories;
 
-import ace.ucv.onlineshop.Model.Client;
+import ace.ucv.onlineshop.Model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ClientRepository extends JpaRepository<Client, Long> {
-    Client findClientByEmail(String email);
+public interface UserRepository extends JpaRepository<User, Long> {
+    User findUserByEmail(String email);
 }

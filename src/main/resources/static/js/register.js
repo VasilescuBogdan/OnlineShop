@@ -10,7 +10,7 @@ async function SignUp(){
     };
 
     const responseJson = await fetch(
-        baseURL + `/api/clients`,
+        baseURL + `/api/users`,
         {
             method: 'POST',
             headers: {

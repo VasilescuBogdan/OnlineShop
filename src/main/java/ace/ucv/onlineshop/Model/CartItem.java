@@ -1,6 +1,5 @@
 package ace.ucv.onlineshop.Model;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,7 +23,7 @@ public class CartItem {
     private Product product;
 
     @OneToOne(optional = false, orphanRemoval = true)
-    @JoinColumn(name = "client_id", nullable = false)
-    private Client client;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
 }
