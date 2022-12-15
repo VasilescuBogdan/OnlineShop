@@ -19,8 +19,18 @@ $(document).ready(async function() {
             newProductCard.innerHTML = `<img src="..." class="card-img-top" alt="...">
                                         <h5 class="card-title"> ${product.name}</h5>
                                         <p class="card-text"> ${product.price} $</p>
-                                        <a href="details/${product.name}" class="btn btn-primary">Details</a>
-                                        <a href="#" class="btn btn-primary">Buy</a>`;
+                                        <div class="container text-center">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <a href="details/${product.name}" class="btn btn-primary">Details</a>
+                                                </div>
+                                                <div class="col">
+                                                    <a href="#" class="btn btn-primary" sec:authorize="isAuthenticated()">Buy</a>
+                                                </div>
+                                            </div>
+                                        </div>`;
+
+
             cards.append(newProductCard);
         }
     } else {
