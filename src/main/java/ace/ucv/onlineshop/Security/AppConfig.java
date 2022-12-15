@@ -39,7 +39,7 @@ public class AppConfig {
                     .authorizeRequests()
                         .antMatchers("/", "/register", "/api/**", "/details/{name}").permitAll()
                         .antMatchers("/products", "/transactions").hasRole("ADMIN")
-                        .antMatchers("profile").hasRole("CLIENT")
+                        .antMatchers("/profile").hasRole("CLIENT")
                         .and()
                         .formLogin().permitAll()
                         .and()
