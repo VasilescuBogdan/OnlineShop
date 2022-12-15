@@ -1,7 +1,9 @@
 package ace.ucv.onlineshop.Services;
 
 import ace.ucv.onlineshop.Dtos.ClientDto;
+import ace.ucv.onlineshop.Model.Profile;
 import ace.ucv.onlineshop.Model.User;
+import ace.ucv.onlineshop.Repositories.ProfileRepository;
 import ace.ucv.onlineshop.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,18 +16,25 @@ public class UserService {
     @Autowired
     public UserRepository userRepository;
 
-    public User createClient(ClientDto client){
+    @Autowired
+    public ProfileRepository profileRepository;
+
+    public void createClient(ClientDto client){
         User newUser = new User();
 
-        newUser.setFirstName(client.getFirstName());
-        newUser.setLastName(client.getLastName());
         newUser.setEmail(client.getEmail());
-        newUser.setNumber(client.getNumber());
-        newUser.setPoints(250);
-        newUser.setCreationDate(LocalDateTime.now());
         newUser.setPassword(client.getPassword());
 
-        return userRepository.save(newUser);
+        Profile newProfile = new Profile();
+        newProfile.setFirstName(client.getFirstName());
+        newProfile.setLastName(client.getLastName());
+        newProfile.setNumber(client.getNumber());
+        newProfile.setPoints(250);
+        newProfile.setCreationDate(LocalDateTime.now());
+        newProfile.setUser(newUser);
+
+        userRepository.save(newUser);
+        profileRepository.save(newProfile);
     }
 
 }

@@ -1,7 +1,6 @@
 package ace.ucv.onlineshop.Controllers;
 
 import ace.ucv.onlineshop.Dtos.ClientDto;
-import ace.ucv.onlineshop.Model.User;
 import ace.ucv.onlineshop.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +15,7 @@ public class UserController {
     UserService userService;
 
     @PostMapping
-    public User createClient(@RequestBody ClientDto newClient){
-        return userService.createClient(newClient);
+    public void createClient(@RequestBody ClientDto newClient){
+        userService.createClient(newClient);
     }
 }

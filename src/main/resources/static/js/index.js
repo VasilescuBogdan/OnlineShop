@@ -19,7 +19,7 @@ $(document).ready(async function() {
             newProductCard.innerHTML = `<img src="..." class="card-img-top" alt="...">
                                         <h5 class="card-title"> ${product.name}</h5>
                                         <p class="card-text"> ${product.price} $</p>
-                                        <a href="#" class="btn btn-primary" onclick="productDetails(${product.name})">Details</a>
+                                        <a href="details/${product.name}" class="btn btn-primary">Details</a>
                                         <a href="#" class="btn btn-primary">Buy</a>`;
             cards.append(newProductCard);
         }
@@ -28,7 +28,7 @@ $(document).ready(async function() {
     }
 })
 
-async function productDetails(name){
+async function productDetails(name){  //TODO make function work
     const responseJson = await fetch(
         baseURL + `/api/products/` + id,
         {

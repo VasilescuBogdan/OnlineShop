@@ -18,9 +18,7 @@ async function SignUp(){
             },
             body: JSON.stringify(data)
         });
-
-    const response = responseJson.JSON;
     console.log(responseJson);
 
-    window.location.replace(baseURL+"/index.html");
+    window.location.replace(baseURL);
 }

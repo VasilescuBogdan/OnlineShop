@@ -56,7 +56,7 @@ public class ProductService {
         return productRepository.findProductByName(name);
     }
 
-    public Discount AddDiscount(Long productId, DiscountDto discountDto){
+    public Discount AddDiscount(Long productId, DiscountDto discountDto){//TODO handle isReduced attribute
 
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new ResourceNotFoundException("Product", "Id", productId));
