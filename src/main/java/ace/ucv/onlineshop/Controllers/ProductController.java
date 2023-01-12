@@ -39,8 +39,8 @@ public class ProductController {
         return productService.getProductByName(name);
     }
 
-    @DeleteMapping("{id}")
-    public void updateProduct(@PathVariable("id") Long Id){
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable("id") Long Id){
         productService.deleteProduct(Id);
     }
 }

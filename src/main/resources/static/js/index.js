@@ -25,7 +25,7 @@ $(document).ready(async function() {
                                                     <a class="btn btn-primary" onclick="productDetails(${product.id})">Details</a>
                                                 </div>
                                                 <div class="col">
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" onclick="showItemDialog(${product.id})">Add to cart</button>
+                                                    <button type="button" class="btn btn-primary" sec:authorize="hasAuthority('USER')" onclick="showItemDialog(${product.id})">Add to cart</button>
                                                 </div>
                                             </div>
                                         </div>`;
@@ -72,12 +72,12 @@ async function productDetails(id){
 
 async function addItem(){
     const data = {
-        quantity: $('#input-quantity'),
-        productId: $('#input-id')
+        quantity: $('#input-quantity').val(),
+        productId: $('#input-id').val()
     };
 
     const responseJson = await fetch(
-        baseURL + `/api/cart/`,
+        baseURL + `/api/cart`,
         {
             method: 'POST',
             headers: {

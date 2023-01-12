@@ -18,11 +18,11 @@ public class CartItem {
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
 
-    @OneToOne(optional = false, orphanRemoval = true)
+    @OneToOne()
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-    @OneToOne(optional = false, orphanRemoval = true)
+    @OneToOne()
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 

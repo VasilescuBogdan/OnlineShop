@@ -46,9 +46,6 @@
                             <p class="ms-2" id="price-product"></p>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#itemModal">Add to cart</button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -66,12 +63,16 @@
                             <div class="form-group">
                                 <label for="input-quantity">Quantity</label>
                                 <input type="number" class="form-control" id="input-quantity" required>
-                                <div class="invalid-feedback">Not enough in stock</div>
+                                <div class="invalid-feedback">Insert a quantity</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" id="input-id" required>
+                                <div class="invalid-feedback">Insert a quantity</div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" onclick="addItem()">Add to cart</button>
+                        <button type="button" class="btn btn-primary" onclick="addItem()">Add to cart</button>
                     </div>
                 </div>
             </div>

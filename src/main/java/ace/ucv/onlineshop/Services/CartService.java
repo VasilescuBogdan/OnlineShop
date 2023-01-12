@@ -25,7 +25,7 @@ public class CartService {
     @Autowired
     UserRepository userRepository;
 
-    public CartItem add(Principal principal, CartItemDto cartItemDto){
+    public CartItem add(Principal principal, CartItemDto cartItemDto){ //ToDo: add duplicate product reastriction
 
         Long productId = cartItemDto.getProductId();
 
@@ -42,18 +42,21 @@ public class CartService {
         cartItem.setProduct(product);
         cartItem.setQuantity(cartItemDto.getQuantity());
 
-        return cartItem;
+        return cartItemRepository.save(cartItem);
     }
 
-    public void remove(Long productId, Principal principal){
+    public void remove(Long id){
+        cartItemRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Product", "Id", id));
+        cartItemRepository.deleteById(id);
+    }
 
-        Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new ResourceNotFoundException("Product", "Id", productId));
+    public void removeAll(Principal principal){
 
         String currentEmail = principal.getName();
         User currentUser = userRepository.findUserByEmail(currentEmail);
 
-        cartItemRepository.deleteByUserAndProduct(currentUser, product);
+        cartItemRepository.deleteAllByUser(currentUser);
     }
 
     public List<CartItem> getCart(Principal principal){

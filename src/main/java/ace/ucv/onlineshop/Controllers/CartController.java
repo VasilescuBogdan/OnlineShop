@@ -16,14 +16,19 @@ public class CartController {
     @Autowired
     CartService cartService;
 
-    @PostMapping(value = "/{id}")
-    public CartItem addProduct(Principal principal, @RequestBody CartItemDto cartItemDto){
+    @PostMapping()
+    public CartItem addItem(Principal principal, @RequestBody CartItemDto cartItemDto){
         return cartService.add(principal, cartItemDto);
     }
 
+    @DeleteMapping(value = "/{id}")
+    public void removeItem(@PathVariable("id") Long id){
+        cartService.remove(id);
+    }
+
     @DeleteMapping()
-    public void removeProduct(Long productId, Principal principal){
-        cartService.remove(productId, principal);
+    public void removeAllItems(Principal principal){
+        cartService.removeAll(principal);
     }
 
     @GetMapping()
