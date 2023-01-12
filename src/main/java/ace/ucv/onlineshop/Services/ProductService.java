@@ -1,7 +1,6 @@
 package ace.ucv.onlineshop.Services;
 
 import ace.ucv.onlineshop.Dtos.DiscountDto;
-import ace.ucv.onlineshop.Exceptions.ProductReducedException;
 import ace.ucv.onlineshop.Exceptions.ResourceNotFoundException;
 import ace.ucv.onlineshop.Model.Discount;
 import ace.ucv.onlineshop.Model.Product;
@@ -61,14 +60,14 @@ public class ProductService {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new ResourceNotFoundException("Product", "Id", productId));
 
-        if (product.getIsReduced()){
-            throw new ProductReducedException(product.getName());
-        }
 
         Discount newDiscount = new Discount();
         newDiscount.setValue(discountDto.getValue());
         newDiscount.setPoints(discountDto.getPoints());
         newDiscount.setProduct(product);
+
+        product.setIsReduced(true);
+        productRepository.save(product);
 
         return newDiscount;
     }

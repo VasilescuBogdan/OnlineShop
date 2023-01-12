@@ -61,8 +61,6 @@ async function addProduct(){
             },
             body: JSON.stringify(data)
         });
-
-    const response = responseJson.JSON;
     console.log(responseJson);
 
     window.location.reload();
@@ -94,8 +92,7 @@ async function fetchData(id){
                 'Content-Type':'application/json'
             },
         });
-    const response = await responseJson.json();
-    return response;
+    return await responseJson.json();
 }
 
 async function updateProduct(){
@@ -119,8 +116,6 @@ async function updateProduct(){
             },
             body: JSON.stringify(data)
         });
-
-    const response = responseJson.JSON;
     console.log(responseJson);
     window.location.reload();
 
@@ -136,8 +131,6 @@ async function deleteProduct(id){
                 'Content-Type' : 'application/json'
             },
         });
-
-    const response = responseJson.Json;
     console.log(responseJson);
 
     window.location.reload();

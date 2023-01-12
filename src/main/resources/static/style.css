@@ -1,0 +1,5 @@
+
+body{
+    background-image: url('../static/images/fundal.jpg');
+    object-fit: cover
+}

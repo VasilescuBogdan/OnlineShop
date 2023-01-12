@@ -2,7 +2,6 @@ package ace.ucv.onlineshop.Controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class PageController {
@@ -20,7 +19,7 @@ public class PageController {
     @GetMapping(value = "/profile")
     public String profilePage(){return "profile";}
 
-    @GetMapping(value = "/details/{name}")
-    public String detailsPage(@PathVariable String name){return "details/" + name;} //TODO make object Details page
+    @GetMapping(value = "/cart")
+    public String cartPage(){return "cart";}
 
 }

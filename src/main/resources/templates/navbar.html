@@ -15,6 +15,9 @@
                <a class="nav-link active text-white" aria-current="page" href="/profile" sec:authorize="hasAuthority('CLIENT')">Profile</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link active text-white" aria-current="page" href="/cart" sec:authorize="hasAuthority('CLIENT')">Cart</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link active text-white" aria-current="page"  href="/logout" sec:authorize="isAuthenticated()">Logout</a>
             </li>
             <li class="nav-item">
