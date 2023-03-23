@@ -39,6 +39,7 @@ public class ProductService {
         newProduct.setPrice(product.getPrice());
         newProduct.setStock(product.getStock());
         newProduct.setProvider(product.getProvider());
+        newProduct.setCategory(product.getCategory());
 
         productRepository.save(newProduct);
 

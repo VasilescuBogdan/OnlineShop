@@ -118,7 +118,6 @@ async function updateProduct(){
         });
     console.log(responseJson);
     window.location.reload();
-
 }
 
 async function deleteProduct(id){
