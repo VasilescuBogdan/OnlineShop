@@ -22,6 +22,9 @@ public class Profile {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+
     @Column(name = "number", nullable = false, unique = true)
     private String number;
 

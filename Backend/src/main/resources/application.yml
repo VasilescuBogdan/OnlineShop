@@ -5,15 +5,13 @@ spring:
     password: admin
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
   security:
     user:
       name: admin
       password: admin
-  mvc:
-    static-path-pattern: "/static/**"
 server:
   port: 8090
 

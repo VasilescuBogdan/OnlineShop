@@ -21,8 +21,4 @@ public class Transaction {
     @Column(name = "date", nullable = false)
     private LocalDateTime date;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "cart_item_id", nullable = false)
-    private CartItem cartItem;
-
 }

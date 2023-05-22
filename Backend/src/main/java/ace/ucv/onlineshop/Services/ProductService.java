@@ -67,7 +67,6 @@ public class ProductService {
         newDiscount.setPoints(discountDto.getPoints());
         newDiscount.setProduct(product);
 
-        product.setIsReduced(true);
         productRepository.save(product);
 
         return newDiscount;

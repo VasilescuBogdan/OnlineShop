@@ -18,6 +18,7 @@ public class Product {
     private String name;
 
     @Column(name = "specifications", nullable = false)
+    @Lob
     private String specifications;
 
     @Column(name = "price", nullable = false)
@@ -32,6 +33,4 @@ public class Product {
     @Column(name = "category", nullable = false)
     private String category;
 
-    @Column(name = "is_reduced", nullable = false)
-    private Boolean isReduced = false;
 }
