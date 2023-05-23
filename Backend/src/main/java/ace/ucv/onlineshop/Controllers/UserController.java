@@ -23,11 +23,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostConstruct
-    public void initUsers() {
-        userService.initUser();
-    }
-
     @PostMapping("/registration")
     public void createClient(@RequestBody RegistrationDto newClient){
         userService.createClient(newClient);

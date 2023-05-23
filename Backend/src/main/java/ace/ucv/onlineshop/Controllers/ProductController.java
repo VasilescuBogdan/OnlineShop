@@ -2,7 +2,9 @@ package ace.ucv.onlineshop.Controllers;
 
 import ace.ucv.onlineshop.Model.Product;
 import ace.ucv.onlineshop.Services.ProductService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,27 +12,20 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/products")
 @CrossOrigin
+@AllArgsConstructor
 public class ProductController {
 
     private final ProductService productService;
 
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
-
     @PostMapping()
+    @PreAuthorize("hasRole('ADMIN')")
     public Product createProduct(@RequestBody Product newProduct){
         return productService.createProduct(newProduct);
     }
 
     @GetMapping()
-    public List<Product> getAllProducts(){
-        return productService.getProducts();
-    }
-
-    @GetMapping("/{id}")
-    public Product fetchData(@PathVariable("id") Long productId){
-        return productService.getProductById(productId);
+    public List<Product> getAllProducts(@RequestParam(defaultValue = "0") int pageNumber){
+        return productService.getProducts(pageNumber);
     }
 
     @PutMapping()
@@ -38,10 +33,6 @@ public class ProductController {
         return productService.updateProduct(product);
     }
 
-    @GetMapping("name/{name}")
-    public Product getProduct(@PathVariable("name") String name) {
-        return productService.getProductByName(name);
-    }
 
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable("id") Long Id){

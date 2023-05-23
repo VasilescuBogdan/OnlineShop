@@ -22,11 +22,8 @@ export class LoginComponent {
       this.userAuthService.setRole(role);
       this.userAuthService.setToken(response.jwtToken);
 
-      if (role === 'ADMIN') {
-        await this.router.navigate(['/admin']);
-      } else {
-        await this.router.navigate(['/user']);
-      }
+      await this.router.navigate(['']);
+
     } catch (error) {
       console.log(error);
     }

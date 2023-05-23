@@ -19,14 +19,6 @@ export class UserService {
     return this.httpClient.post(this.BASE_PATH + "/authentication", loginData, {headers: this.requestHeader});
   }
 
-  public forUser() {
-    return this.httpClient.get(this.BASE_PATH + '/forClient', {responseType:'text'});
-  }
-
-  public forAdmin() {
-    return this.httpClient.get(this.BASE_PATH + '/forAdmin', {responseType:'text'});
-  }
-
   public roleMatch(allowedRoles: string[]) {
     let isMatch = false;
     const userRole = this.userAuthService.getRole();

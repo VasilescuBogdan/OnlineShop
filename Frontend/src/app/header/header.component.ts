@@ -19,10 +19,14 @@ export class HeaderComponent {
 
   public logout() {
     this.userAuthService.clear();
-    this.router.navigate(['/home']);
+    this.router.navigate(['']);
   }
 
   public roleMatch(roles: string[]) {
     return this.userService.roleMatch(roles);
+  }
+
+  public isAdmin() {
+    return this.userAuthService.isAdmin();
   }
 }

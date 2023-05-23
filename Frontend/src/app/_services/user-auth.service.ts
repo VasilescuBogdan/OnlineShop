@@ -31,4 +31,8 @@ export class UserAuthService {
   public isLoggedIn():boolean {
     return this.getRole() !== "{}" && this.getToken() !== "{}";
   }
+
+  isAdmin() {
+    return this.getRole() === "ADMIN";
+  }
 }

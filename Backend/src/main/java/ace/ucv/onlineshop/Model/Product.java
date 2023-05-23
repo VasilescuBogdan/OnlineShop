@@ -22,7 +22,7 @@ public class Product {
     private String specifications;
 
     @Column(name = "price", nullable = false)
-    private Float price;
+    private Double price;
 
     @Column(name = "stock", nullable = false)
     private Integer stock;

@@ -5,23 +5,25 @@ import ace.ucv.onlineshop.Exceptions.ResourceNotFoundException;
 import ace.ucv.onlineshop.Model.Discount;
 import ace.ucv.onlineshop.Model.Product;
 import ace.ucv.onlineshop.Repositories.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ProductService {
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     public Product createProduct(Product newProduct){
         return productRepository.save(newProduct);
     }
 
-    public List<Product> getProducts(){
-        return productRepository.findAll();
+    public List<Product> getProducts(int pageNumber){
+        return (List<Product>) productRepository.findAll(PageRequest.of(pageNumber, 12)).getContent();
     }
 
     public Product getProductById(Long productId){
@@ -52,9 +54,6 @@ public class ProductService {
         productRepository.deleteById(productId);
     }
 
-    public Product getProductByName(String name) {
-        return productRepository.findProductByName(name);
-    }
 
     public Discount AddDiscount(Long productId, DiscountDto discountDto){ //TODO figure how to set is reduced to product
 
