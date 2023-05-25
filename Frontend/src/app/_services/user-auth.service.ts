@@ -35,4 +35,8 @@ export class UserAuthService {
   isAdmin() {
     return this.getRole() === "ADMIN";
   }
+
+  isClient() {
+    return this.getRole() === "CLIENT";
+  }
 }

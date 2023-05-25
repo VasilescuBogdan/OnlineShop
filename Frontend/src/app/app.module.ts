@@ -22,6 +22,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatCardModule} from "@angular/material/card";
 import { AddProductComponent } from './add-product/add-product.component';
 import {MatSelectModule} from "@angular/material/select";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {MatSelectModule} from "@angular/material/select";
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
+    MatGridListModule
   ],
   providers: [
     AuthGuard,

@@ -1,13 +1,12 @@
 package ace.ucv.onlineshop.Services;
 
 import ace.ucv.onlineshop.Dtos.DiscountDto;
+import ace.ucv.onlineshop.Exceptions.NoProductExistInRepositoryException;
 import ace.ucv.onlineshop.Exceptions.ResourceNotFoundException;
 import ace.ucv.onlineshop.Model.Discount;
 import ace.ucv.onlineshop.Model.Product;
 import ace.ucv.onlineshop.Repositories.ProductRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,8 +21,14 @@ public class ProductService {
         return productRepository.save(newProduct);
     }
 
-    public List<Product> getProducts(int pageNumber){
-        return (List<Product>) productRepository.findAll(PageRequest.of(pageNumber, 12)).getContent();
+    public List<Product> getProducts(){
+        List<Product> products = productRepository.findAll();
+
+        if (products.isEmpty()) {
+            throw new NoProductExistInRepositoryException();
+        }   else {
+            return products;
+        }
     }
 
     public Product getProductById(Long productId){

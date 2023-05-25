@@ -3,6 +3,7 @@ import {NgForm} from "@angular/forms";
 import {ProductDto} from "../_dtos/product.dto";
 import {ProductService} from "../_services/product.service";
 import {lastValueFrom} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-product',
@@ -12,6 +13,7 @@ import {lastValueFrom} from "rxjs";
 export class AddProductComponent {
 
   product: ProductDto = {
+    id: 0,
     name: "",
     specifications: "",
     category: "",
@@ -21,13 +23,14 @@ export class AddProductComponent {
   }
 
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private router: Router) {
   }
 
   async addProduct(productForm: NgForm) {
     try {
       const response = await lastValueFrom(this.productService.createProduct(this.product));
       console.log(response);
+      await this.router.navigate(['']);
     } catch (err) {
       console.log(err);
     }

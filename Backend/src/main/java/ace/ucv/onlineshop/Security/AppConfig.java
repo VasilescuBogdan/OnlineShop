@@ -40,8 +40,6 @@ public class AppConfig {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/users/forAdmin").hasRole("ADMIN")
-                .antMatchers("/api/users/forClient").hasRole("CLIENT")
                 .antMatchers("/api/**").permitAll()
                 .antMatchers(HttpHeaders.ALLOW).permitAll()
                 .and()

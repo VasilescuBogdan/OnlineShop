@@ -24,8 +24,8 @@ public class ProductController {
     }
 
     @GetMapping()
-    public List<Product> getAllProducts(@RequestParam(defaultValue = "0") int pageNumber){
-        return productService.getProducts(pageNumber);
+    public List<Product> getAllProducts(){
+        return productService.getProducts();
     }
 
     @PutMapping()
@@ -34,6 +34,7 @@ public class ProductController {
     }
 
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable("id") Long Id){
         productService.deleteProduct(Id);
