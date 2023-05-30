@@ -14,12 +14,13 @@ export class AddProductComponent {
 
   product: ProductDto = {
     id: 0,
-    name: "",
-    specifications: "",
-    category: "",
-    provider: "",
+    name: '',
+    specifications: '',
+    category: '',
+    provider: '',
     stock: 0,
-    price: 0
+    price: 0,
+    image: ''
   }
 
 
@@ -33,6 +34,16 @@ export class AddProductComponent {
       await this.router.navigate(['']);
     } catch (err) {
       console.log(err);
+    }
+  }
+
+  onImageChosen(event: Event) {
+    const fileInput = event.target as HTMLInputElement;
+    const image: File | null = fileInput.files?.[0] || null;
+    if (image) {
+      const filePath: string = URL.createObjectURL(image);
+      console.log('File Location:', filePath);
+      this.product.image = filePath;
     }
   }
 }

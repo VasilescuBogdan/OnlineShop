@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {LoginRequest} from "../_dtos/loginRequest.dto";
 import {UserAuthService} from "./user-auth.service";
+import {ProfileDto} from "../_dtos/profile.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,9 @@ export class UserService {
     }
 
     return isMatch;
+  }
+
+  public getUserProfile() {
+    return this.httpClient.get<ProfileDto>(this.BASE_PATH + "/profile");
   }
 }

@@ -29,6 +29,7 @@
         <mat-label>Stock</mat-label>
         <input type="number" matInput [(ngModel)]="product.stock" name="stock" id="stock">
       </mat-form-field>
+        <input type="file" (change)="onImageChosen($event)">
       <button type="submit" mat-raised-button color="primary" class="w-100 mt-5">Submit</button>
     </form>
   </mat-card>

@@ -23,6 +23,10 @@ import {MatCardModule} from "@angular/material/card";
 import { AddProductComponent } from './add-product/add-product.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatGridListModule} from "@angular/material/grid-list";
+import { CartDialogComponent } from './cart-dialog/cart-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import { ProfileComponent } from './profile/profile.component';
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -31,7 +35,9 @@ import {MatGridListModule} from "@angular/material/grid-list";
     LoginComponent,
     HeaderComponent,
     ForbiddenComponent,
-    AddProductComponent
+    AddProductComponent,
+    CartDialogComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +53,9 @@ import {MatGridListModule} from "@angular/material/grid-list";
     MatInputModule,
     MatCardModule,
     MatSelectModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDialogModule,
+    MatTableModule
   ],
   providers: [
     AuthGuard,

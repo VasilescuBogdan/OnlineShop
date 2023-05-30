@@ -12,6 +12,8 @@ spring:
     user:
       name: admin
       password: admin
+  mvc:
+    static-path-pattern=/images/**
 server:
   port: 8090
 

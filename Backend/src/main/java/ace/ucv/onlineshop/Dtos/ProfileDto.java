@@ -1,13 +1,18 @@
 package ace.ucv.onlineshop.Dtos;
 
+import ace.ucv.onlineshop.Model.Cart;
+import ace.ucv.onlineshop.Model.CartItem;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
 public class ProfileDto {
+
+    String username;
 
     String email;
 
@@ -20,4 +25,6 @@ public class ProfileDto {
     String number;
 
     Integer points;
+
+    List<CartItem> cart;
 }

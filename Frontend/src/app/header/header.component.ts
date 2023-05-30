@@ -21,12 +21,11 @@ export class HeaderComponent {
     this.userAuthService.clear();
     this.router.navigate(['']);
   }
-
-  public roleMatch(roles: string[]) {
-    return this.userService.roleMatch(roles);
-  }
-
   public isAdmin() {
     return this.userAuthService.isAdmin();
+  }
+
+  public isClient() {
+    return this.userAuthService.isClient();
   }
 }

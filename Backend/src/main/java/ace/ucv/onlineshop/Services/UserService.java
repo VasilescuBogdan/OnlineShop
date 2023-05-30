@@ -4,12 +4,15 @@ import ace.ucv.onlineshop.Dtos.JwtRequest;
 import ace.ucv.onlineshop.Dtos.JwtResponse;
 import ace.ucv.onlineshop.Dtos.ProfileDto;
 import ace.ucv.onlineshop.Dtos.RegistrationDto;
+import ace.ucv.onlineshop.Model.Cart;
 import ace.ucv.onlineshop.Model.Profile;
 import ace.ucv.onlineshop.Model.User;
+import ace.ucv.onlineshop.Repositories.CartRepository;
 import ace.ucv.onlineshop.Repositories.ProfileRepository;
 import ace.ucv.onlineshop.Repositories.UserRepository;
 import ace.ucv.onlineshop.Security.JwtUtil;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -20,8 +23,6 @@ import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -36,6 +37,10 @@ public class UserService {
     private final JwtService jwtService;
 
     private final AuthenticationManager authenticationManager;
+
+    private final CartRepository cartRepository;
+
+    private final CartService cartService;
 
     public void createClient(RegistrationDto client){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -54,8 +59,12 @@ public class UserService {
         newProfile.setCreationDate(LocalDate.now());
         newProfile.setUser(newUser);
 
+        Cart newCart = new Cart();
+        newCart.setUserProfile(newProfile);
+
         userRepository.save(newUser);
         profileRepository.save(newProfile);
+        cartRepository.save(newCart);
     }
 
     public JwtResponse createJwtToken(JwtRequest jwtRequest) throws Exception {
@@ -80,6 +89,7 @@ public class UserService {
         }
     }
 
+    @PreAuthorize("hasRole('CLIENT')")
     public ProfileDto getCurrentUserProfile(Principal principal){
         String currentUsername = principal.getName();
         User currentUser = userRepository.findUserByUsername(currentUsername);
@@ -92,23 +102,9 @@ public class UserService {
         profile.setCreationDate(currentProfile.getCreationDate());
         profile.setNumber(currentProfile.getNumber());
         profile.setPoints(currentProfile.getPoints());
+        profile.setUsername(currentUsername);
+        profile.setCart(cartService.getCart(principal).getCartItems());
 
         return profile;
-    }
-
-    public void initUser() {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-        User clientUser = new User();
-        clientUser.setUsername("test");
-        clientUser.setPassword(passwordEncoder.encode("test"));
-        clientUser.setRole("CLIENT");
-        userRepository.save(clientUser);
-
-        User adminUser = new User();
-        adminUser.setUsername("admin");
-        adminUser.setPassword(passwordEncoder.encode("admin"));
-        adminUser.setRole("ADMIN");
-        userRepository.save(adminUser);
     }
 }

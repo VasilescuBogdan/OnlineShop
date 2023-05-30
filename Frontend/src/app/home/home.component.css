@@ -15,6 +15,18 @@ mat-grid-tile{
   margin: auto;
 }
 
+.image-container {
+  width: 200px; /* Set the desired width */
+  height: 100px; /* Set the desired height */
+  overflow: hidden; /* Hide any overflow */
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .specifications-text{
   white-space: inherit;
   height: 40px;

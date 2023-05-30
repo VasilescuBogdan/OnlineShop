@@ -6,4 +6,5 @@ export interface ProductDto{
   stock: number;
   provider: string;
   category: string;
+  image: string;
 }
