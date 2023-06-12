@@ -22,4 +22,10 @@ public class CartController {
     public Cart addCartItem(@RequestBody CartItemDto cartItemDto, Principal principal) {
         return cartService.addNewCartItem(cartItemDto, principal);
     }
+
+    @PreAuthorize("hasRole('CLIENT')")
+    @DeleteMapping("/{id}")
+    public void DeleteCartItem(@PathVariable("id") Long cartItemId) {
+        cartService.deleteCartItem(cartItemId);
+    }
 }

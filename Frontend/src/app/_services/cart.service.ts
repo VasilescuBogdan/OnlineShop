@@ -15,4 +15,8 @@ export class CartService {
   public addCartItem(cartItemDto: CartItemDto) {
     return this.httpClient.post(this.BASE_PATH, cartItemDto);
   }
+
+  public deleteCartItem(cartItemId: number) {
+    return this.httpClient.delete(this.BASE_PATH + "/" + cartItemId);
+  }
 }

@@ -47,9 +47,11 @@ export class CartDialogComponent implements OnInit{
   }
 
   public async addCartItem(cartItem: CartItemDto) {
+    console.log(cartItem);
     try {
       const response = await lastValueFrom(this.cartService.addCartItem(cartItem));
       console.log(response);
+      location.reload();
     } catch (err) {
       console.log(err);
     }
@@ -57,5 +59,6 @@ export class CartDialogComponent implements OnInit{
 
   ngOnInit(): void {
     console.log(this.data);
+    this.cartItem.product = this.data;
   }
 }

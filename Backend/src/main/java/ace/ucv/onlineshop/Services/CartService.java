@@ -22,13 +22,11 @@ public class CartService {
 
     private final ProfileRepository profileRepository;
 
-    private final ProductRepository productRepository;
-
     public Cart addNewCartItem(CartItemDto cartItemDto, Principal principal) {
 
         CartItem newCartItem = new CartItem();
         newCartItem.setQuantity(cartItemDto.getQuantity());
-        newCartItem.setProduct(productRepository.findById(cartItemDto.getProductId()).get());
+        newCartItem.setProduct((cartItemDto.getProduct()));
         cartItemRepository.save(newCartItem);
 
         Cart cart = getCart(principal);
@@ -39,5 +37,9 @@ public class CartService {
     public Cart getCart(Principal principal) {
         User currentUser = userRepository.findUserByUsername(principal.getName());
         return cartRepository.getCartByUserProfile(profileRepository.findProfileByUser(currentUser));
+    }
+
+    public void deleteCartItem(Long cartItemId) {
+        cartItemRepository.deleteById(cartItemId);
     }
 }
