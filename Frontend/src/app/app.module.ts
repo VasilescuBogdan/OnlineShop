@@ -27,6 +27,7 @@ import { CartDialogComponent } from './cart-dialog/cart-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { ProfileComponent } from './profile/profile.component';
 import {MatTableModule} from "@angular/material/table";
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {MatTableModule} from "@angular/material/table";
     ForbiddenComponent,
     AddProductComponent,
     CartDialogComponent,
-    ProfileComponent
+    ProfileComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

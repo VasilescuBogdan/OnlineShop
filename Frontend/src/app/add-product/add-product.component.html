@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <mat-card class="p-5">
-    <form #productForm="ngForm" (ngSubmit)="addProduct(productForm)">
+    <form (ngSubmit)="addProduct()">
       <mat-form-field appearance="fill" class="w-100">
         <mat-label>Name</mat-label>
         <input type="text" matInput [(ngModel)]="product.name" name="name">

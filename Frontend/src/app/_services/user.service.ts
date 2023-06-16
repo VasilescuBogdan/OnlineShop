@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {LoginRequest} from "../_dtos/loginRequest.dto";
 import {UserAuthService} from "./user-auth.service";
 import {ProfileDto} from "../_dtos/profile.dto";
+import {RegistrationDto} from "../_dtos/registration.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +38,9 @@ export class UserService {
 
   public getUserProfile() {
     return this.httpClient.get<ProfileDto>(this.BASE_PATH + "/profile");
+  }
+
+  public register(registration: RegistrationDto) {
+    return this.httpClient.post(this.BASE_PATH + "/registration", registration, {headers: this.requestHeader});
   }
 }

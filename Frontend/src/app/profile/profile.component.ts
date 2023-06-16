@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../_services/user.service";
-import {lastValueFrom} from "rxjs";
 import {ProfileDto} from "../_dtos/profile.dto";
 import {CartService} from "../_services/cart.service";
 
@@ -31,24 +30,31 @@ export class ProfileComponent implements OnInit {
     console.log(this.getTotalCost());
   }
 
-  public async getProfile() {
-    try {
-      const response = await lastValueFrom(this.userService.getUserProfile());
-      console.log(response);
-      this.profile = response;
-    } catch (err) {
-      console.log(err);
-    }
+  public getProfile() {
+    this.userService.getUserProfile().subscribe(
+      (response) => {
+        console.log(response);
+        this.profile = response;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
   }
 
-  public async deleteItem(id: number) {
+  public deleteItem(id: number) {
     console.log(id);
-    try {
-      await this.cartService.deleteCartItem(id).toPromise();
-      location.reload();
-    } catch (err) {
-      console.log(err);
-    }
+    this.cartService.deleteCartItem(id).subscribe(
+      (response) => {
+        console.log(response);
+        location.reload();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
 
   }
 

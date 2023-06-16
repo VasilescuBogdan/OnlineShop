@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../_services/product.service";
-import {lastValueFrom, Observable} from "rxjs";
 import {ProductDto} from "../_dtos/product.dto";
 import {UserAuthService} from "../_services/user-auth.service";
-import {CartItemDto} from "../_dtos/cartItem.dto";
 import {CartService} from "../_services/cart.service";
 import {MatDialog} from "@angular/material/dialog";
 import {CartDialogComponent} from "../cart-dialog/cart-dialog.component";
@@ -24,14 +22,13 @@ export class HomeComponent implements OnInit {
     this.getAllProducts();
   }
 
-  public async getAllProducts() {
-    try {
-      const response = await lastValueFrom(this.productService.getAllProducts());
-      console.log(response);
-      this.products = response;
-    } catch (err) {
-      console.log(err);
-    }
+  public getAllProducts() {
+    this.productService.getAllProducts().subscribe(
+      (response) => {
+        console.log(response);
+        this.products = response;
+      }
+    );
   }
 
   public isAdmin() {
@@ -42,16 +39,19 @@ export class HomeComponent implements OnInit {
     return this.userAuthService.isClient();
   }
 
-  public async deleteProduct(productID: number) {
-    try {
-      await this.productService.deleteProduct(productID).toPromise();
-      location.reload();
-    } catch (err) {
-      console.log(err);
-    }
+  public deleteProduct(productID: number) {
+    this.productService.deleteProduct(productID).subscribe(
+      (response) => {
+        console.log(response);
+        location.reload();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   openDialog(product: ProductDto) {
-    this.dialog.open(CartDialogComponent, { data: product});
+    this.dialog.open(CartDialogComponent, {data: product});
   }
 }

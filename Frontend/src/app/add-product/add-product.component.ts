@@ -1,8 +1,6 @@
-import { Component } from '@angular/core';
-import {NgForm} from "@angular/forms";
+import {Component} from '@angular/core';
 import {ProductDto} from "../_dtos/product.dto";
 import {ProductService} from "../_services/product.service";
-import {lastValueFrom} from "rxjs";
 import {Router} from "@angular/router";
 
 @Component({
@@ -27,14 +25,16 @@ export class AddProductComponent {
   constructor(private productService: ProductService, private router: Router) {
   }
 
-  async addProduct(productForm: NgForm) {
-    try {
-      const response = await lastValueFrom(this.productService.createProduct(this.product));
-      console.log(response);
-      await this.router.navigate(['']);
-    } catch (err) {
-      console.log(err);
-    }
+  addProduct() {
+    this.productService.createProduct(this.product).subscribe(
+      (response) => {
+        this.router.navigate(['']);
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   onImageChosen(event: Event) {

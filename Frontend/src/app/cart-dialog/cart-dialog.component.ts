@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {CartItemDto} from "../_dtos/cartItem.dto";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {lastValueFrom} from "rxjs";
 import {CartService} from "../_services/cart.service";
 import {ProductDto} from "../_dtos/product.dto";
 
@@ -27,7 +26,7 @@ import {ProductDto} from "../_dtos/product.dto";
     }
   `]
 })
-export class CartDialogComponent implements OnInit{
+export class CartDialogComponent implements OnInit {
 
   cartItem: CartItemDto = {
     product: {
@@ -46,15 +45,17 @@ export class CartDialogComponent implements OnInit{
   constructor(@Inject(MAT_DIALOG_DATA) public data: ProductDto, private cartService: CartService) {
   }
 
-  public async addCartItem(cartItem: CartItemDto) {
+  public addCartItem(cartItem: CartItemDto) {
     console.log(cartItem);
-    try {
-      const response = await lastValueFrom(this.cartService.addCartItem(cartItem));
-      console.log(response);
-      location.reload();
-    } catch (err) {
-      console.log(err);
-    }
+    this.cartService.addCartItem(cartItem).subscribe(
+      (response) => {
+        console.log(response);
+        location.reload();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   ngOnInit(): void {
