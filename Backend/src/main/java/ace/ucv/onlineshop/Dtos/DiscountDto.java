@@ -7,7 +7,9 @@ import lombok.Setter;
 @Setter
 public class DiscountDto {
 
+    Long productId;
+
     Float value;
 
-    String points;
+    Integer points;
 }

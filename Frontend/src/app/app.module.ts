@@ -23,11 +23,12 @@ import {MatCardModule} from "@angular/material/card";
 import { AddProductComponent } from './add-product/add-product.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatGridListModule} from "@angular/material/grid-list";
-import { CartDialogComponent } from './cart-dialog/cart-dialog.component';
+import { CartDialogComponent } from './add-cart-dialog/cart-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { ProfileComponent } from './profile/profile.component';
 import {MatTableModule} from "@angular/material/table";
 import { RegisterComponent } from './register/register.component';
+import { AddDiscountDialogComponent } from './add-discount-dialog/add-discount-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { RegisterComponent } from './register/register.component';
     AddProductComponent,
     CartDialogComponent,
     ProfileComponent,
-    RegisterComponent
+    RegisterComponent,
+    AddDiscountDialogComponent
   ],
   imports: [
     BrowserModule,

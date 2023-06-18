@@ -5,7 +5,7 @@ import {CartService} from "../_services/cart.service";
 import {ProductDto} from "../_dtos/product.dto";
 
 @Component({
-  selector: 'app-cart-dialog',
+  selector: 'app-add-cart-dialog',
   template: `
     <h1 mat-dialog-title>{{ data.name }}</h1>
     <div mat-dialog-content>

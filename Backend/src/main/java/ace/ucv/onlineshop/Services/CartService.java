@@ -39,7 +39,6 @@ public class CartService {
         return cartRepository.getCartByUserProfile(profileRepository.findProfileByUser(currentUser));
     }
 
-    public void deleteCartItem(Long cartItemId) {
-        cartItemRepository.deleteById(cartItemId);
+    public void deleteCartItem(Long cartItemId) {cartItemRepository.deleteById(cartItemId);
     }
 }

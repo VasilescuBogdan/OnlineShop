@@ -22,7 +22,9 @@
         </div>
         <div class="mt-2">
           <button *ngIf="isAdmin()" type="button" mat-raised-button color="warn" (click)="deleteProduct(product.id)">Delete</button>
-          <button *ngIf="isClient()" type="button" mat-raised-button color="primary" (click)="openDialog(product)">Add to cart</button>
+          <button *ngIf="isClient()" type="button" mat-raised-button color="primary" (click)="openCartDialog(product)">Add to cart</button>
+          <button *ngIf="isAdmin() && !hasDiscount(product.id)" type="button" mat-raised-button color="primary" (click)="openDiscountDialog(product.id)">Add discount</button>
+          <button *ngIf="isAdmin() && hasDiscount(product.id)" type="button" mat-raised-button color="primary" (click)="removeDiscount(product.id)">Remove Discount</button>
         </div>
 
       </div>

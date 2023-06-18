@@ -16,14 +16,14 @@ public class Discount {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
     @Column(name = "value", nullable = false)
     private Float value;
 
     @Column(name = "points", nullable = false)
-    private String points;
+    private Integer points;
 
 
 }

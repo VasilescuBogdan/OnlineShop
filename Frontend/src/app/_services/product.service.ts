@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ProductDto} from "../_dtos/product.dto";
 import {Observable} from "rxjs";
 import {UserAuthService} from "./user-auth.service";
+import {DiscountDto} from "../_dtos/discount.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,15 @@ export class ProductService {
     return this.httpClient.delete(this.BASE_PATH + "/" + Id);
   }
 
+  public addDiscount(newDiscount: DiscountDto) {
+    return this.httpClient.post<DiscountDto>(this.BASE_PATH + "/discount", newDiscount);
+  }
 
+  public deleteDiscount(productId: number) {
+    return this.httpClient.delete(this.BASE_PATH + "/discount/" + productId);
+  }
+
+  public getDiscount(productId: number) {
+    return this.httpClient.get<DiscountDto>(this.BASE_PATH + "/discount/" + productId);
+  }
 }
