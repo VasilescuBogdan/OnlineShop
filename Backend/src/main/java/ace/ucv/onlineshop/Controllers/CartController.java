@@ -1,7 +1,7 @@
 package ace.ucv.onlineshop.Controllers;
 
-import ace.ucv.onlineshop.Dtos.CartItemDto;
 import ace.ucv.onlineshop.Model.Cart;
+import ace.ucv.onlineshop.Model.CartItem;
 import ace.ucv.onlineshop.Services.CartService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,8 +19,8 @@ public class CartController {
 
     @PreAuthorize("hasRole('CLIENT')")
     @PostMapping()
-    public Cart addCartItem(@RequestBody CartItemDto cartItemDto, Principal principal) {
-        return cartService.addNewCartItem(cartItemDto, principal);
+    public Cart addCartItem(@RequestBody CartItem cartItem, Principal principal) {
+        return cartService.addNewCartItem(cartItem, principal);
     }
 
     @PreAuthorize("hasRole('CLIENT')")

@@ -2,6 +2,7 @@ package ace.ucv.onlineshop.Services;
 
 import ace.ucv.onlineshop.Dtos.DiscountDto;
 import ace.ucv.onlineshop.Exceptions.NoProductExistInRepositoryException;
+import ace.ucv.onlineshop.Exceptions.ProductHasADiscountException;
 import ace.ucv.onlineshop.Exceptions.ResourceNotFoundException;
 import ace.ucv.onlineshop.Model.Discount;
 import ace.ucv.onlineshop.Model.Product;
@@ -34,23 +35,6 @@ public class ProductService {
         }
     }
 
-    public Product updateProduct(Product product) {
-
-        Product newProduct = productRepository.findById(product.getId())
-                .orElseThrow(() -> new ResourceNotFoundException("Product", "Id", product.getId()));
-
-        newProduct.setName(product.getName());
-        newProduct.setSpecifications(product.getSpecifications());
-        newProduct.setPrice(product.getPrice());
-        newProduct.setStock(product.getStock());
-        newProduct.setProvider(product.getProvider());
-        newProduct.setCategory(product.getCategory());
-
-        productRepository.save(newProduct);
-
-        return newProduct;
-    }
-
     public void deleteProduct(Long productId) {
         productRepository.findById(productId)
                 .orElseThrow(() -> new ResourceNotFoundException("Product", "Id", productId));
@@ -64,34 +48,33 @@ public class ProductService {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new ResourceNotFoundException("Product", "Id", productId));
 
+        if (product.getDiscount() != null) {
+            throw new ProductHasADiscountException(product.getName());
+        }
+
         Discount newDiscount = new Discount();
         newDiscount.setValue(discountDto.getValue());
         newDiscount.setPoints(discountDto.getPoints());
-        newDiscount.setProduct(product);
 
         discountRepository.save(newDiscount);
+
+        product.setDiscount(newDiscount);
+
+        productRepository.save(product);
 
         return newDiscount;
     }
 
-    public void deleteDiscount(Long productId) {
+    public void deleteDiscount(Long id) {
 
-        Product product = productRepository.findById(productId)
-                        .orElseThrow(() -> new ResourceNotFoundException("Product", "Id", productId));
-        discountRepository.deleteDiscountByProduct(product);
-    }
+        Discount discount =  discountRepository.findById(id)
+                        .orElseThrow(() -> new ResourceNotFoundException("Discount", "Id", id));
 
-    public DiscountDto getDiscount(Long productId) {
-        Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new ResourceNotFoundException("Product", "Id", productId));
-        Discount discount = discountRepository.findDiscountByProduct(product);
+        Product product = productRepository.findByDiscount(discount);
 
-        DiscountDto discountDto = new DiscountDto();
-        discountDto.setPoints(discount.getPoints());
-        discountDto.setValue(discount.getValue());
-        discountDto.setProductId(productId);
+        product.setDiscount(null);
 
-        return discountDto;
+        discountRepository.deleteById(id);
     }
     
 }

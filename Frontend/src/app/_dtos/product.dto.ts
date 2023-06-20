@@ -1,4 +1,4 @@
-export interface ProductDto{
+export interface AddProductDto{
   id: number;
   name: string;
   specifications: string;
@@ -6,5 +6,19 @@ export interface ProductDto{
   stock: number;
   provider: string;
   category: string;
-  image: string;
+}
+
+export interface GetProductDto{
+  id: number;
+  name: string;
+  specifications: string;
+  price: number;
+  stock: number;
+  provider: string;
+  category: string;
+  discount: {
+    id: number;
+    value: number;
+    points: number;
+  }
 }

@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {ProductDto} from "../_dtos/product.dto";
-import {Observable} from "rxjs";
-import {UserAuthService} from "./user-auth.service";
+import {GetProductDto, AddProductDto} from "../_dtos/product.dto";
 import {DiscountDto} from "../_dtos/discount.dto";
 
 @Injectable({
@@ -17,12 +15,12 @@ export class ProductService {
   constructor(private httpClient: HttpClient) {
   }
 
-  public createProduct(newProduct: ProductDto) {
-    return this.httpClient.post<ProductDto>(this.BASE_PATH, newProduct);
+  public createProduct(newProduct: AddProductDto) {
+    return this.httpClient.post<AddProductDto>(this.BASE_PATH, newProduct);
   }
 
   public getAllProducts() {
-    return this.httpClient.get<ProductDto[]>(this.BASE_PATH, {headers: this.requestHeader});
+    return this.httpClient.get<GetProductDto[]>(this.BASE_PATH, {headers: this.requestHeader});
   }
 
   public deleteProduct(Id: number) {
@@ -35,9 +33,5 @@ export class ProductService {
 
   public deleteDiscount(productId: number) {
     return this.httpClient.delete(this.BASE_PATH + "/discount/" + productId);
-  }
-
-  public getDiscount(productId: number) {
-    return this.httpClient.get<DiscountDto>(this.BASE_PATH + "/discount/" + productId);
   }
 }

@@ -33,7 +33,7 @@ public class Product {
     @Column(name = "category", nullable = false)
     private String category;
 
-    @Column(name = "image", nullable = false)
-    private String image;
-
+    @JoinColumn(name = "discountId", unique = true)
+    @OneToOne()
+    private Discount discount;
 }

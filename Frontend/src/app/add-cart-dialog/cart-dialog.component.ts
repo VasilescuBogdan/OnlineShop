@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {CartItemDto} from "../_dtos/cartItem.dto";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {CartService} from "../_services/cart.service";
-import {ProductDto} from "../_dtos/product.dto";
+import {GetProductDto} from "../_dtos/product.dto";
 
 @Component({
   selector: 'app-add-cart-dialog',
@@ -37,12 +37,16 @@ export class CartDialogComponent implements OnInit {
       provider: '',
       stock: 0,
       price: 0,
-      image: '',
+      discount: {
+        id: 0,
+        value: 0,
+        points: 0,
+      }
     },
-    quantity: 0
+    quantity: 0,
   }
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: ProductDto, private cartService: CartService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: GetProductDto, private cartService: CartService) {
   }
 
   public addCartItem(cartItem: CartItemDto) {

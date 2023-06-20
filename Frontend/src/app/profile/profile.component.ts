@@ -19,6 +19,8 @@ export class ProfileComponent implements OnInit {
     points: 0,
     cart: []
   }
+  TotalPoints = 0;
+  TotalValue = 0;
 
   displayedColumns: string[] = ['name', 'value', 'quantity', 'price', 'delete-button'];
 
@@ -27,7 +29,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProfile();
-    console.log(this.getTotalCost());
   }
 
   public getProfile() {
@@ -58,7 +59,4 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  getTotalCost() {
-    return this.profile.cart.map(t => t).reduce((acc, value) => acc + value.quantity * value.product.price, 0);
-  }
 }

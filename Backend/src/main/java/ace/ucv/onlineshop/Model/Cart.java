@@ -23,4 +23,5 @@ public class Cart {
     @JoinColumn(name = "user_id", nullable = false)
     @OneToOne
     private Profile userProfile;
+
 }

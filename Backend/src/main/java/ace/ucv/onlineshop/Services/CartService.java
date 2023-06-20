@@ -1,6 +1,5 @@
 package ace.ucv.onlineshop.Services;
 
-import ace.ucv.onlineshop.Dtos.CartItemDto;
 import ace.ucv.onlineshop.Model.Cart;
 import ace.ucv.onlineshop.Model.CartItem;
 import ace.ucv.onlineshop.Model.User;
@@ -22,11 +21,11 @@ public class CartService {
 
     private final ProfileRepository profileRepository;
 
-    public Cart addNewCartItem(CartItemDto cartItemDto, Principal principal) {
+    public Cart addNewCartItem(CartItem cartItem, Principal principal) {
 
         CartItem newCartItem = new CartItem();
-        newCartItem.setQuantity(cartItemDto.getQuantity());
-        newCartItem.setProduct((cartItemDto.getProduct()));
+        newCartItem.setQuantity(cartItem.getQuantity());
+        newCartItem.setProduct((cartItem.getProduct()));
         cartItemRepository.save(newCartItem);
 
         Cart cart = getCart(principal);

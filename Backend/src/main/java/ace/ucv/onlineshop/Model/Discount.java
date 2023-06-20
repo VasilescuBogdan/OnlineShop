@@ -15,10 +15,6 @@ public class Discount {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
-
     @Column(name = "value", nullable = false)
     private Float value;
 

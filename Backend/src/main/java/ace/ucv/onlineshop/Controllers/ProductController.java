@@ -5,7 +5,6 @@ import ace.ucv.onlineshop.Model.Discount;
 import ace.ucv.onlineshop.Model.Product;
 import ace.ucv.onlineshop.Services.ProductService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,12 +29,6 @@ public class ProductController {
         return productService.getProducts();
     }
 
-    @PutMapping()
-    public Product updateProduct(@RequestBody Product product) {
-        return productService.updateProduct(product);
-    }
-
-
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable("id") Long Id) {
@@ -54,9 +47,4 @@ public class ProductController {
         productService.deleteDiscount(productId);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/discount/{id}")
-    public DiscountDto getDiscount(@PathVariable("id") Long productId) {
-        return productService.getDiscount(productId);
-    }
 }
