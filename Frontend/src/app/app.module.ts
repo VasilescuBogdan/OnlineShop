@@ -31,6 +31,7 @@ import { RegisterComponent } from './register/register.component';
 import { AddDiscountDialogComponent } from './add-discount-dialog/add-discount-dialog.component';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { TransactionListComponent } from './transaction-list/transaction-list.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     CartDialogComponent,
     ProfileComponent,
     RegisterComponent,
-    AddDiscountDialogComponent
+    AddDiscountDialogComponent,
+    TransactionListComponent
   ],
     imports: [
         BrowserModule,

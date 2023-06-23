@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class AddTransactionDto {
 
-    private Double totalValue;
+    private Double totalPrice;
 
     private Integer totalPoints;
 }

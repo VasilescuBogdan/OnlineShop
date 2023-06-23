@@ -1,11 +1,10 @@
 package ace.ucv.onlineshop.Model;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -20,14 +19,10 @@ public class Transaction {
     private Long id;
 
     @Column(name = "date", nullable = false)
-    private LocalDateTime date;
+    private LocalDate date;
 
     @Column(name = "total", nullable = false)
     private Double TotalCost;
-
-    @JoinColumn(name = "item_id", nullable = false)
-    @ManyToMany
-    private List<CartItem> itemName;
 
     @ManyToOne
     @JoinColumn(name = "profile_id", nullable = false)

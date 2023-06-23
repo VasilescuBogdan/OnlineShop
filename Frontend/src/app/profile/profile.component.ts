@@ -77,8 +77,6 @@ export class ProfileComponent implements OnInit {
   }
 
   onCheckBoxChange(item: CartItemDto) {
-    console.log(item.isReduced);
-    console.log(item.id);
     this.cartService.setIsReduced(item.id, item.isReduced).subscribe(
       () => {
         this.getProfile();
@@ -116,7 +114,15 @@ export class ProfileComponent implements OnInit {
   }
 
   pay(totalPrice: number, totalPoints: number) {
-    this.transactionService.addTransaction(totalPrice, totalPoints);
+    this.transactionService.addTransaction(totalPrice, totalPoints).subscribe(
+      (response) => {
+        console.log(response);
+        this.getProfile();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
     this.getProfile();
   }
 

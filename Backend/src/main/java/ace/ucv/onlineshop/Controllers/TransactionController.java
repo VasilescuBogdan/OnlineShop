@@ -8,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/transactions")
@@ -21,5 +22,10 @@ public class TransactionController {
     @PostMapping()
     public Transaction addTransaction(@RequestBody AddTransactionDto transactionDto, Principal principal) {
         return transactionService.addTransaction(transactionDto, principal);
+    }
+
+    @GetMapping
+    public List<Transaction> getTransactions(Principal principal) {
+        return transactionService.getTransactions(principal);
     }
 }
