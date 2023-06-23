@@ -3,7 +3,7 @@
     <mat-grid-tile *ngFor="let product of products">
       <div class="row p-5">
         <div class="mt-3">
-          <h1><b>{{product.name}}</b></h1>
+          <p><b>{{product.name}}</b></p>
         </div>
         <div class="mt-3">
           <h2>{{product.category}}</h2>
@@ -12,13 +12,17 @@
           <p>{{product.specifications}}</p>
         </div>
         <div class="mt-3">
-          <p>{{product.stock}} pieces</p>
+          <p> {{product.points}} points</p>
         </div>
-        <div class="mt-3" [ngClass]="product.discount ? 'text-decoration-line-through text-danger' : 'text-success'">
-          <p class="fs-2">{{product.price}} RON</p>
+        <div class="mt-3 text-right">
+          <p class="fs-3 d-inline mb-4" [ngClass]="product.discount ? 'text-decoration-line-through text-danger' : 'text-success'">{{product.price}} RON</p>
+          <p class="fs-3 text-info d-inline" *ngIf="product.discount">-{{product.discount.value}}%</p>
         </div>
         <div class="mt-3 text-success" *ngIf="product.discount">
-          <p class="fs-2">{{product.price * product.discount.value / 100 | number:'1.2-2'}} RON</p>
+          <p class="fs-2">{{product.price - product.price * product.discount.value / 100 | number:'1.2-2'}} RON</p>
+        </div>
+        <div class="mt-3 text-danger" *ngIf="product.discount">
+          <p> -{{product.discount.points | number:'1.2-2'}} points</p>
         </div>
         <div class="mt-3">
           <button *ngIf="isAdmin()" class="me-3" type="button" mat-raised-button color="warn" (click)="deleteProduct(product.id)">Delete</button>
@@ -26,7 +30,6 @@
           <button *ngIf="isAdmin() && !product.discount" type="button" mat-raised-button color="primary" (click)="openDiscountDialog(product.id)">Add discount</button>
           <button *ngIf="isAdmin() && product.discount" type="button" mat-raised-button color="primary" (click)="removeDiscount(product.discount.id)">Remove Discount</button>
         </div>
-
       </div>
     </mat-grid-tile>
   </mat-grid-list>

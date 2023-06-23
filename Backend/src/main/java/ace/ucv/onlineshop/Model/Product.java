@@ -24,8 +24,8 @@ public class Product {
     @Column(name = "price", nullable = false)
     private Double price;
 
-    @Column(name = "stock", nullable = false)
-    private Integer stock;
+    @Column(name = "points", nullable = false)
+    private Integer points;
 
     @Column(name = "provider", nullable = false)
     private String provider;

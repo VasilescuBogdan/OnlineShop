@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {CartItemDto} from "../_dtos/cartItem.dto";
 
 @Injectable({
@@ -18,5 +18,17 @@ export class CartService {
 
   public deleteCartItem(cartItemId: number) {
     return this.httpClient.delete(this.BASE_PATH + "/" + cartItemId);
+  }
+
+  public setQuantity(cartItemId: number, quantity: number) {
+    return this.httpClient.patch(this.BASE_PATH + "/quantity/" + cartItemId + "?quantity=" + quantity, null);
+  }
+
+  public setIsReduced(cartItemId: number, isReduced: boolean) {
+    return this.httpClient.patch(this.BASE_PATH + "/isReduced/" + cartItemId + "?is_reduced=" + isReduced, null);
+  }
+
+  emptyCart(cart: CartItemDto[]) {
+    return this.httpClient.delete(this.BASE_PATH);
   }
 }

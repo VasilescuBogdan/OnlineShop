@@ -12,7 +12,7 @@ export interface ProfileDto{
 
   number: String;
 
-  points: Number;
+  points: number;
 
   cart: CartItemDto[];
 }

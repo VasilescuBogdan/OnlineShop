@@ -21,4 +21,7 @@ public class CartItem {
 
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
+
+    @Column(name = "is_reduced", nullable = false)
+    private Boolean isReduced;
 }

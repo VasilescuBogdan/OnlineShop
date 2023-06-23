@@ -24,6 +24,18 @@ public class CartController {
     }
 
     @PreAuthorize("hasRole('CLIENT')")
+    @PatchMapping(("/quantity/{id}"))
+    public CartItem SetQuantity(@RequestParam("quantity") Integer quantity, @PathVariable("id") Long Id) {
+        return cartService.setQuantity(quantity, Id);
+    }
+
+    @PreAuthorize("hasRole('CLIENT')")
+    @PatchMapping(("/isReduced/{id}"))
+    public CartItem addCartItem(@RequestParam("is_reduced") Boolean isReduced, @PathVariable("id") Long Id) {
+        return cartService.setIsReduced(isReduced, Id);
+    }
+
+    @PreAuthorize("hasRole('CLIENT')")
     @DeleteMapping("/{id}")
     public void DeleteCartItem(@PathVariable("id") Long cartItemId) {
         cartService.deleteCartItem(cartItemId);

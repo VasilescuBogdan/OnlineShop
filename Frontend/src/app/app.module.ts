@@ -29,6 +29,8 @@ import { ProfileComponent } from './profile/profile.component';
 import {MatTableModule} from "@angular/material/table";
 import { RegisterComponent } from './register/register.component';
 import { AddDiscountDialogComponent } from './add-discount-dialog/add-discount-dialog.component';
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -43,24 +45,26 @@ import { AddDiscountDialogComponent } from './add-discount-dialog/add-discount-d
     RegisterComponent,
     AddDiscountDialogComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    RouterModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatSelectModule,
-    MatGridListModule,
-    MatDialogModule,
-    MatTableModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        RouterModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCardModule,
+        MatSelectModule,
+        MatGridListModule,
+        MatDialogModule,
+        MatTableModule,
+        MatButtonToggleModule,
+        MatCheckboxModule
+    ],
   providers: [
     AuthGuard,
     {

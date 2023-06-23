@@ -3,7 +3,7 @@ export interface AddProductDto{
   name: string;
   specifications: string;
   price: number;
-  stock: number;
+  points: number;
   provider: string;
   category: string;
 }
@@ -13,7 +13,7 @@ export interface GetProductDto{
   name: string;
   specifications: string;
   price: number;
-  stock: number;
+  points: number;
   provider: string;
   category: string;
   discount: {

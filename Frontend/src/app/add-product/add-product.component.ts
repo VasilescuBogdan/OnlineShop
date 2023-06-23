@@ -16,7 +16,7 @@ export class AddProductComponent {
     specifications: '',
     category: '',
     provider: '',
-    stock: 0,
+    points: 0,
     price: 0,
   }
 

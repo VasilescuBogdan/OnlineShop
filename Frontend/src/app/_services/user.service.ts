@@ -43,4 +43,8 @@ export class UserService {
   public register(registration: RegistrationDto) {
     return this.httpClient.post(this.BASE_PATH + "/registration", registration, {headers: this.requestHeader});
   }
+
+  public setPoints(points: number) {
+    return this.httpClient.patch(this.BASE_PATH + "/points", points);
+  }
 }

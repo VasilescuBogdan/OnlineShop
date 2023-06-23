@@ -26,6 +26,7 @@ public class CartService {
         CartItem newCartItem = new CartItem();
         newCartItem.setQuantity(cartItem.getQuantity());
         newCartItem.setProduct((cartItem.getProduct()));
+        newCartItem.setIsReduced(false);
         cartItemRepository.save(newCartItem);
 
         Cart cart = getCart(principal);
@@ -38,6 +39,22 @@ public class CartService {
         return cartRepository.getCartByUserProfile(profileRepository.findProfileByUser(currentUser));
     }
 
+    public CartItem setIsReduced(boolean isReduced, Long cartItemId) {
+        CartItem cartItem = cartItemRepository.getCartItemById(cartItemId);
+        cartItem.setIsReduced(isReduced);
+        return cartItemRepository.save(cartItem);
+    }
+
+    public CartItem setQuantity(Integer quantity, Long cartItemId) {
+        CartItem cartItem = cartItemRepository.getCartItemById(cartItemId);
+        cartItem.setQuantity(quantity);
+        return cartItemRepository.save(cartItem);
+    }
+
     public void deleteCartItem(Long cartItemId) {cartItemRepository.deleteById(cartItemId);
+    }
+
+    public void emptyCart() {
+
     }
 }

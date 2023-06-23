@@ -29,13 +29,14 @@ import {GetProductDto} from "../_dtos/product.dto";
 export class CartDialogComponent implements OnInit {
 
   cartItem: CartItemDto = {
+    id: 0,
     product: {
       id: 0,
       name: '',
       specifications: '',
       category: '',
       provider: '',
-      stock: 0,
+      points: 0,
       price: 0,
       discount: {
         id: 0,
@@ -44,6 +45,7 @@ export class CartDialogComponent implements OnInit {
       }
     },
     quantity: 0,
+    isReduced: false,
   }
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: GetProductDto, private cartService: CartService) {
