@@ -6,45 +6,43 @@ import {ProfileDto} from "../_dtos/profile.dto";
 import {RegistrationDto} from "../_dtos/registration.dto";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class UserService {
 
-  BASE_PATH = "http://localhost:8090/api/users";
+    BASE_PATH = "http://localhost:8090/api/users";
 
-  requestHeader = new HttpHeaders({"No-Auth": "True"});
+    requestHeader = new HttpHeaders({"No-Auth": "True"});
 
-  constructor(private httpClient: HttpClient, private userAuthService: UserAuthService) {
-  }
-
-  public login(loginData: LoginRequest) {
-    return this.httpClient.post(this.BASE_PATH + "/authentication", loginData, {headers: this.requestHeader});
-  }
-
-  public roleMatch(allowedRoles: string[]) {
-    let isMatch = false;
-    const userRole = this.userAuthService.getRole();
-
-    if (userRole !== null && userRole) {
-      for (let role of allowedRoles) {
-        if (userRole === role) {
-          isMatch = true;
-        }
-      }
+    constructor(private httpClient: HttpClient, private userAuthService: UserAuthService) {
     }
 
-    return isMatch;
-  }
+    public login(loginData: LoginRequest) {
+        return this.httpClient.post(this.BASE_PATH + "/authentication", loginData, {headers: this.requestHeader});
+    }
 
-  public getUserProfile() {
-    return this.httpClient.get<ProfileDto>(this.BASE_PATH + "/profile");
-  }
+    public roleMatch(allowedRoles: string[]) {
+        let isMatch = false;
+        const userRole = this.userAuthService.getRole();
 
-  public register(registration: RegistrationDto) {
-    return this.httpClient.post(this.BASE_PATH + "/registration", registration, {headers: this.requestHeader});
-  }
+        if (userRole !== null && userRole) {
+            for (let role of allowedRoles) {
+                if (userRole === role) {
+                    isMatch = true;
+                }
+            }
+        }
 
-  public setPoints(points: number) {
-    return this.httpClient.patch(this.BASE_PATH + "/points", points);
-  }
+        return isMatch;
+    }
+
+    public getUserProfile() {
+        return this.httpClient.get<ProfileDto>(this.BASE_PATH + "/profile");
+    }
+
+    public register(registration: RegistrationDto) {
+        return this.httpClient.post(this.BASE_PATH + "/registration", registration, {headers: this.requestHeader});
+    }
+
+
 }
