@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter
@@ -21,7 +20,7 @@ public class Transaction {
     @Column(name = "date", nullable = false)
     private LocalDate date;
 
-    @Column(name = "total", nullable = false)
+    @Column(name = "totalCost", nullable = false)
     private Double TotalCost;
 
     @ManyToOne

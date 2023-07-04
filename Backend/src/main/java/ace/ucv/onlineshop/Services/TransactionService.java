@@ -1,6 +1,7 @@
 package ace.ucv.onlineshop.Services;
 
-import ace.ucv.onlineshop.Dtos.AddTransactionDto;
+import ace.ucv.onlineshop.Dtos.PaymentDto;
+import ace.ucv.onlineshop.Dtos.TransactionDto;
 import ace.ucv.onlineshop.Model.*;
 import ace.ucv.onlineshop.Repositories.ProfileRepository;
 import ace.ucv.onlineshop.Repositories.TransactionItemRepository;
@@ -28,12 +29,12 @@ public class TransactionService {
 
     private final TransactionItemRepository transactionItemRepository;
 
-    public Transaction addTransaction(AddTransactionDto transactionDto, Principal principal) {
+    public Transaction addTransaction(PaymentDto paymentDto, Principal principal) {
         
         User user = userRepository.findUserByUsername(principal.getName());
 
         Profile profile = profileRepository.findProfileByUser(user);
-        int actualPoints = profile.getPoints() + transactionDto.getTotalPoints();
+        int actualPoints = profile.getPoints() + paymentDto.getTotalPoints();
         if (actualPoints < 0) {
             throw new RuntimeException("Invalid transaction: Not enough points");
         }
@@ -41,7 +42,7 @@ public class TransactionService {
         profileRepository.save(profile);
 
         Transaction transaction = new Transaction();
-        transaction.setTotalCost(transactionDto.getTotalPrice());
+        transaction.setTotalCost(paymentDto.getTotalPrice());
         transaction.setDate(LocalDate.now());
         transaction.setProfile(profile);
 
@@ -69,7 +70,19 @@ public class TransactionService {
         return transactionRepository.save(transaction);
     }
 
-    public List<Transaction> getTransactions(Principal principal) {
-        return transactionRepository.findTransactionsByProfile(profileRepository.findProfileByUser(userRepository.findUserByUsername(principal.getName())));
+    public List<TransactionDto> getTransactions(Principal principal) {
+        List<Transaction> transactions = transactionRepository.findTransactionsByProfile(profileRepository.findProfileByUser(userRepository.findUserByUsername(principal.getName())));
+        List<TransactionDto> transactionDtos = new ArrayList<>();
+        for (Transaction transaction: transactions) {
+            TransactionDto transactionDto = new TransactionDto();
+
+            transactionDto.setDate(transaction.getDate());
+            transactionDto.setTotalCost(transaction.getTotalCost());
+            transactionDto.setItems(transactionItemRepository.findAllByTransaction(transaction));
+
+            transactionDtos.add(transactionDto);
+        }
+
+        return transactionDtos;
     }
 }

@@ -65,16 +65,20 @@ public class ProductService {
         return newDiscount;
     }
 
-    public void deleteDiscount(Long id) {
+    public void deleteDiscount(Long discountId) {
 
-        Discount discount =  discountRepository.findById(id)
-                        .orElseThrow(() -> new ResourceNotFoundException("Discount", "Id", id));
+        Discount discount =  discountRepository.findById(discountId)
+                        .orElseThrow(() -> new ResourceNotFoundException("Discount", "Id", discountId));
 
         Product product = productRepository.findByDiscount(discount);
 
         product.setDiscount(null);
 
-        discountRepository.deleteById(id);
+        discountRepository.deleteById(discountId);
     }
-    
+
+    public Product getProduct(Long productId) {
+        return productRepository.findById(productId)
+                .orElseThrow(() -> new ResourceNotFoundException("Product", "id", productId));
+    }
 }

@@ -3,10 +3,10 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {HomeComponent} from './home/home.component';
-import {LoginComponent} from './login/login.component';
-import {HeaderComponent} from './header/header.component';
-import {ForbiddenComponent} from './forbidden/forbidden.component';
+import {HomeComponent} from './_components/home/home.component';
+import {LoginComponent} from './_components/login/login.component';
+import {HeaderComponent} from './_components/header/header.component';
+import {ForbiddenComponent} from './_components/forbidden/forbidden.component';
 import {FormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {RouterModule} from "@angular/router";
@@ -20,18 +20,18 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatCardModule} from "@angular/material/card";
-import { AddProductComponent } from './add-product/add-product.component';
+import { AddProductComponent } from './_components/add-product/add-product.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatGridListModule} from "@angular/material/grid-list";
-import { CartDialogComponent } from './add-cart-dialog/cart-dialog.component';
+import { CartDialogComponent } from './_pop-ups/add-cart-dialog/cart-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './_components/profile/profile.component';
 import {MatTableModule} from "@angular/material/table";
-import { RegisterComponent } from './register/register.component';
-import { AddDiscountDialogComponent } from './add-discount-dialog/add-discount-dialog.component';
+import { RegisterComponent } from './_components/register/register.component';
+import { AddDiscountDialogComponent } from './_pop-ups/add-discount-dialog/add-discount-dialog.component';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import { TransactionListComponent } from './transaction-list/transaction-list.component';
+import { TransactionListComponent } from './_components/transaction-list/transaction-list.component';
 
 @NgModule({
   declarations: [

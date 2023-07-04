@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../_services/user.service";
-import {ProfileDto} from "../_dtos/profile.dto";
-import {CartService} from "../_services/cart.service";
-import {CartItemDto} from "../_dtos/cartItem.dto";
-import {TransactionService} from "../_services/transaction.service";
+import {UserService} from "../../_services/user.service";
+import {ProfileDto} from "../../_dtos/profile.dto";
+import {CartService} from "../../_services/cart.service";
+import {CartItemDto} from "../../_dtos/cartItem.dto";
+import {TransactionService} from "../../_services/transaction.service";
 
 @Component({
   selector: 'app-profile',
@@ -62,14 +62,16 @@ export class ProfileComponent implements OnInit {
     this.TotalPoints = 0;
     this.TotalPrice = 0;
     for (const item of this.profile.cart) {
-      let actualPrice: number;
-      let actualPoints: number;
+      let actualPrice = 0;
+      let actualPoints = 0;
       if (!item.isReduced) {
         actualPrice = item.product.price * item.quantity;
         actualPoints = item.product.points * item.quantity;
       } else {
-        actualPrice = (item.product.price - item.product.price * item.product.discount.value / 100) * item.quantity;
-        actualPoints = -item.product.discount.points * item.quantity;
+          if (item.product.discount) {
+              actualPrice = (item.product.price - item.product.price * item.product.discount.value / 100) * item.quantity;
+              actualPoints = -item.product.discount.points * item.quantity;
+          }
       }
       this.TotalPrice += actualPrice;
       this.TotalPoints += actualPoints;

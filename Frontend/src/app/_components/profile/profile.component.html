@@ -1,5 +1,7 @@
 <div class="container mt-5">
   <h1>username: {{profile.username}}</h1>
+  <h2>Name: {{profile.firstName}} {{profile.lastName}}</h2>
+  <h2>Email: {{profile.email}} Number: {{profile.number}}</h2>
   <h2>Points: {{profile.points}}</h2>
   <table mat-table [dataSource]="profile.cart" class="mat-elevation-z8">
 

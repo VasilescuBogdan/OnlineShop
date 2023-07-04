@@ -10,6 +10,11 @@
       <mat-icon>home</mat-icon>
     </button>
   </div>
-  <button *ngIf="isAdmin()" mat-raised-button color="base" routerLink="/addProduct">Add New Product</button>
-  <button *ngIf="isClient()" mat-raised-button color="primary" routerLink="/profile">Profile</button>
+  <div class="pe-3">
+    <button *ngIf="isAdmin()" mat-raised-button color="base" routerLink="/add-product">Add New Product</button>
+    <button *ngIf="isClient()" class="pr-3" mat-raised-button color="primary" routerLink="/profile">Profile</button>
+  </div>
+  <div class="pe-3">
+    <button *ngIf="isClient()" mat-raised-button color="primary" routerLink="/transaction">Transactions</button>
+  </div>
 </mat-toolbar>

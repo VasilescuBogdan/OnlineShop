@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {TransactionDto} from "../_dtos/transaction.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,6 @@ export class TransactionService {
   }
 
   public getTransactions() {
-    return this.httpClient.get(this.BASE_PATH);
+    return this.httpClient.get<TransactionDto[]>(this.BASE_PATH);
   }
 }

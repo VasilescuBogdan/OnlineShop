@@ -1,0 +1,50 @@
+<div class="mt-5 ms-lg-5">
+    <mat-grid-list cols="5" rowHeight="4:6" gutterSize="80px">
+        <mat-grid-tile *ngFor="let product of products">
+            <div class="row p-5">
+                <div>
+                    <p><b>{{product.name}}</b></p>
+                </div>
+                <div class="mt-3 specifications-text">
+                    <p>{{product.specifications}}</p>
+                </div>
+                <div class="mt-3">
+                    <p> {{product.points}} points</p>
+                </div>
+                <div class="mt-3 text-right">
+                    <p class="fs-3 d-inline mb-4"
+                       [ngClass]="product.discount ? 'text-decoration-line-through text-danger' : 'text-success'">{{product.price}}
+                        RON</p>
+                    <p class="fs-3 text-info d-inline" *ngIf="product.discount">-{{product.discount.value}}%</p>
+                </div>
+                <div class="mt-3 text-success" *ngIf="product.discount">
+                    <p class="fs-2">{{product.price - product.price * product.discount.value / 100 | number:'1.2-2'}}
+                        RON</p>
+                </div>
+                <div class="mt-3 text-danger" *ngIf="product.discount">
+                    <p> -{{product.discount.points | number:'1.2-2'}} points</p>
+                </div>
+                <div class="mt-3">
+                    <button mat-mini-fab *ngIf="isAdmin()" class="me-3" type="button" color="warn"
+                            (click)="deleteProduct(product.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button *ngIf="isAdmin()" class="mt-1" type="button" mat-mini-fab color="primary"
+                            (click)="editProduct(product.id)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button *ngIf="isClient()" type="button" mat-mini-fab color="primary"
+                            (click)="openCartDialog(product)">
+                        <mat-icon>add_shopping_cart</mat-icon>
+                    </button>
+                    <button *ngIf="isAdmin() && !product.discount" type="button" mat-raised-button color="primary"
+                            (click)="openDiscountDialog(product.id)">Add discount
+                    </button>
+                    <button *ngIf="isAdmin() && product.discount" type="button" mat-raised-button color="primary"
+                            (click)="removeDiscount(product.discount.id)">Remove Discount
+                    </button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

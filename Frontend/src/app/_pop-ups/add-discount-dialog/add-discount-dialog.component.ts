@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {DiscountDto} from "../_dtos/discount.dto";
+import {DiscountDto} from "../../_dtos/discount.dto";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {ProductService} from "../_services/product.service";
+import {ProductService} from "../../_services/product.service";
 
 @Component({
   selector: 'app-add-discount-dialog',

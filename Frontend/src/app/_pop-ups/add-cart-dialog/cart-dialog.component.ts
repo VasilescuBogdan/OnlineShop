@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {CartItemDto} from "../_dtos/cartItem.dto";
+import {CartItemDto} from "../../_dtos/cartItem.dto";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {CartService} from "../_services/cart.service";
-import {GetProductDto} from "../_dtos/product.dto";
+import {CartService} from "../../_services/cart.service";
+import {ProductDto} from "../../_dtos/product.dto";
 
 @Component({
   selector: 'app-add-cart-dialog',
@@ -48,7 +48,7 @@ export class CartDialogComponent implements OnInit {
     isReduced: false,
   }
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: GetProductDto, private cartService: CartService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: ProductDto, private cartService: CartService) {
   }
 
   public addCartItem(cartItem: CartItemDto) {

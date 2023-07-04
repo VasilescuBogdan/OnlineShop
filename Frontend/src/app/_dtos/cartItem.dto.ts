@@ -1,8 +1,8 @@
-import {GetProductDto} from "./product.dto";
+import {ProductDto} from "./product.dto";
 
 export interface CartItemDto {
   id: number;
-  product: GetProductDto;
+  product: ProductDto;
   quantity: number;
   isReduced: boolean;
 }

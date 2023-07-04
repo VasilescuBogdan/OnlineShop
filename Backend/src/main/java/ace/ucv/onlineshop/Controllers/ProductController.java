@@ -31,14 +31,20 @@ public class ProductController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable("id") Long Id) {
-        productService.deleteProduct(Id);
+    public void deleteProduct(@PathVariable("id") Long productId) {
+        productService.deleteProduct(productId);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/discount")
     public Discount addDiscount(@RequestBody DiscountDto newDiscount) {
         return productService.addDiscount(newDiscount);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/{id}")
+    public Product getProduct(@PathVariable("id") Long productId) {
+        return productService.getProduct(productId);
     }
 
     @PreAuthorize("hasRole('ADMIN')")

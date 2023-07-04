@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AddTransactionDto {
+public class PaymentDto {
 
     private Double totalPrice;
 

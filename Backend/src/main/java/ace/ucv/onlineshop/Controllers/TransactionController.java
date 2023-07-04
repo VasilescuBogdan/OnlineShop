@@ -1,6 +1,7 @@
 package ace.ucv.onlineshop.Controllers;
 
-import ace.ucv.onlineshop.Dtos.AddTransactionDto;
+import ace.ucv.onlineshop.Dtos.PaymentDto;
+import ace.ucv.onlineshop.Dtos.TransactionDto;
 import ace.ucv.onlineshop.Model.Transaction;
 import ace.ucv.onlineshop.Services.TransactionService;
 import lombok.AllArgsConstructor;
@@ -20,12 +21,12 @@ public class TransactionController {
 
     @PreAuthorize("hasRole('CLIENT')")
     @PostMapping()
-    public Transaction addTransaction(@RequestBody AddTransactionDto transactionDto, Principal principal) {
+    public Transaction addTransaction(@RequestBody PaymentDto transactionDto, Principal principal) {
         return transactionService.addTransaction(transactionDto, principal);
     }
 
     @GetMapping
-    public List<Transaction> getTransactions(Principal principal) {
+    public List<TransactionDto> getTransactions(Principal principal) {
         return transactionService.getTransactions(principal);
     }
 }
