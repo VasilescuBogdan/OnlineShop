@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {ProductService} from "./product.service";
 import {ProductDto} from "../_dtos/product.dto";
-import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
+import {ActivatedRouteSnapshot, Resolve} from "@angular/router";
 import {Observable, of} from "rxjs";
 
 @Injectable({
@@ -12,7 +12,7 @@ export class ProductResolverService implements Resolve<ProductDto> {
   constructor(private productService: ProductService) {
   }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ProductDto> {
+    resolve(route: ActivatedRouteSnapshot): Observable<ProductDto> {
         const id = Number(route.paramMap.get("productId"));
 
         if (id) {

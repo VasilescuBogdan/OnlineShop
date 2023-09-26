@@ -42,15 +42,15 @@ export class HomeComponent implements OnInit {
 
     public deleteProduct(productId: number | null) {
         if (productId) {
-            this.productService.deleteProduct(productId).subscribe(
-                (response) => {
+            this.productService.deleteProduct(productId).subscribe({
+                next: (response) => {
                     console.log(response);
                     this.getAllProducts();
                 },
-                (error) => {
+                error: (error) => {
                     console.log(error);
                 }
-            );
+            });
         }
     }
 
@@ -63,18 +63,18 @@ export class HomeComponent implements OnInit {
     }
 
     removeDiscount(productId: number) {
-        this.productService.deleteDiscount(productId).subscribe(
-            (response) => {
+        this.productService.deleteDiscount(productId).subscribe({
+            next: (response) => {
                 console.log(response);
                 this.getAllProducts();
             },
-            (error) => {
+            error: (error) => {
                 console.log(error);
             }
-        );
+        });
     }
 
     editProduct(id: number | null) {
-        this.router.navigate(['/add-product', {productId: id}]);
+        this.router.navigate(['/add-product', {productId: id}]).then(r => console.log(r));
     }
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {UserService} from "../../_services/user.service";
 import {UserAuthService} from "../../_services/user-auth.service";
@@ -9,30 +9,26 @@ import {Router} from "@angular/router";
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
     constructor(private userService: UserService, private userAuthService: UserAuthService, private router: Router) {
     }
 
-    ngOnInit(): void {
-
-    }
-
     login(loginForm: NgForm) {
-        this.userService.login(loginForm.value).subscribe(
-            (response: any) => {
+        this.userService.login(loginForm.value).subscribe({
+            next: (response: any) => {
                 this.userAuthService.setRole(response.user.role);
                 this.userAuthService.setToken(response.jwtToken);
 
-                this.router.navigate(['']);
+                this.router.navigate(['']).then(r => console.log(r));
             },
-            (error) => {
+            error: (error) => {
                 console.log(error);
             }
-        );
+        });
     }
 
     registerUser() {
-        this.router.navigate(['/registration']);
+        this.router.navigate(['/registration']).then(r => console.log(r));
     }
 }

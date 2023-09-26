@@ -2,15 +2,15 @@ import {CartItemDto} from "./cartItem.dto";
 
 export interface ProfileDto{
 
-  username: String;
+  username: string;
 
-  firstName: String;
+  firstName: string;
 
-  lastName: String;
+  lastName: string;
 
-  email: String;
+  email: string;
 
-  number: String;
+  number: string;
 
   points: number;
 

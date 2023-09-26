@@ -5,15 +5,13 @@ import {Injectable} from '@angular/core';
 })
 export class UserAuthService {
 
-  constructor() {
-  }
 
-  public setRole(role: string) {
+    public setRole(role: string) {
     localStorage.setItem("role", role);
   }
 
   public getRole(): string {
-    return localStorage.getItem("role") || "{}";
+    return localStorage.getItem("role") ?? "{}";
   }
 
   public setToken(jwtToken: string) {
@@ -21,7 +19,7 @@ export class UserAuthService {
   }
 
   public getToken(): string {
-    return localStorage.getItem("jwtToken") || "{}";
+    return localStorage.getItem("jwtToken") ?? "{}";
   }
 
   public clear() {

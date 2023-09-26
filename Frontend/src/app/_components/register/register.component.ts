@@ -14,14 +14,14 @@ export class RegisterComponent {
   }
 
   register(registerForm: NgForm) {
-    this.userService.register(registerForm.value).subscribe(
-      (response) => {
+    this.userService.register(registerForm.value).subscribe({
+      next:(response) => {
         console.log(response);
-        this.router.navigate(['/login']);
+        this.router.navigate(['/login']).then(r => console.log(r));
       },
-      (error) => {
+      error:(error) => {
         console.log(error);
       }
-    )
+    })
   }
 }

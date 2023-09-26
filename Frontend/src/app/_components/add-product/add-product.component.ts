@@ -30,15 +30,19 @@ export class AddProductComponent implements OnInit {
     }
 
     addProduct() {
-        this.productService.createProduct(this.product).subscribe(
-            (response) => {
-                this.router.navigate(['']);
+        this.productService.createProduct(this.product).subscribe({
+            next: (response) => {
+                this.router.navigate(['']).then(
+                    r => console.log(r),
+                    err => console.log(err)
+                );
                 console.log(response);
             },
-            (error) => {
+            error: (error) => {
                 console.log(error);
             }
-        );
+        })
+
     }
 
 }

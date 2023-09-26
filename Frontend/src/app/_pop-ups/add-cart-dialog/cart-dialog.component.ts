@@ -53,15 +53,15 @@ export class CartDialogComponent implements OnInit {
 
   public addCartItem(cartItem: CartItemDto) {
     console.log(cartItem);
-    this.cartService.addCartItem(cartItem).subscribe(
-      (response) => {
-        console.log(response);
-        location.reload();
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.cartService.addCartItem(cartItem).subscribe({
+        next: (response) => {
+            console.log(response);
+            location.reload();
+        },
+        error: (error) => {
+            console.log(error);
+        }
+    });
   }
 
   ngOnInit(): void {
